@@ -1018,7 +1018,8 @@ p {
 
 .benefits {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 .benefits__item {
   max-width: 200px;
@@ -1066,9 +1067,11 @@ a.first-btn {
 
 .zaim-lime {
   display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 .zaim-lime__item {
-  max-width: 258px;
+  max-width: 230px;
   margin: 0 20px 20px 20px;
 }
 .zaim-lime img {
@@ -1111,9 +1114,10 @@ a.first-btn {
 
 .get-many {
   display: flex;
+  flex-wrap: wrap;
 }
 .get-many__item {
-  max-width: 400px;
+  max-width: 350px;
   margin: 0 20px 20px 20px;
 }
 
@@ -1128,6 +1132,7 @@ a.first-btn {
 
 .zaym-lime {
   display: flex;
+  width: 100%;
   position: absolute;
   top: -51px;
   left: -1px;
@@ -1279,6 +1284,7 @@ a.first-btn {
 .footer-bottom {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   margin: 0 -10px;
 }
 .footer-bottom a {
@@ -1291,6 +1297,7 @@ a.first-btn {
   color: #3d3d3d;
 }
 .footer-bottom__item {
+  max-width: 700px;
   padding-bottom: 30px;
 }
 .footer-bottom p {

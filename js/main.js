@@ -129,14 +129,17 @@ $(document).ready(function () {
   let rangeDate = document.getElementById("rangeDate");
   let output = document.getElementById("value");
   let valueDate = document.getElementById("valueDate");
-
+  let output1 = document.getElementById("get-value");
+  
 
   output.innerHTML = range.value;
+  output1.innerHTML = range.value;
   valueDate.innerHTML = rangeDate.value;
 
   // Update the current range value (each time you drag the slider handle)
   range.oninput = function() {
       output.innerHTML = this.value;
+      output1.innerHTML = this.value;
   }
 
   rangeDate.oninput = function() {
@@ -144,7 +147,7 @@ $(document).ready(function () {
   }
 
   //calc toggle
-  let maxValueDate = 60;
+  let maxValueDate = 158;
   let step = 100;
   let maxValue = 70000;
 
@@ -160,6 +163,7 @@ let y = x*step/maxValue;
 toggle1.click(function(){
   range.value = 10000;
   output.innerHTML = 10000;
+  output1.innerHTML = 10000;
   rangeDate.value = 15;
   valueDate.innerHTML = 15;
   document.getElementById('day').innerHTML = 'дней';
@@ -177,9 +181,10 @@ toggle1.click(function(){
 toggle2.click(function(){
   range.value = 25000;
   output.innerHTML = 25000;
-  rangeDate.value = 42;
-  valueDate.innerHTML = rangeDate.value/7;
-  document.getElementById('day').innerHTML = 'недель';
+  output1.innerHTML = 25000;
+  rangeDate.value = 41;
+  valueDate.innerHTML = rangeDate.value;
+  // document.getElementById('day').innerHTML = 'недель';
   getRange();
   getrangeDateQuantity();
   toggle2.addClass('active');
@@ -205,12 +210,16 @@ toggle2.click(function(){
       $('#myRange').attr('step', "5000");
       let color = 'linear-gradient(90deg, #f39100 '+ y +'%, #dce2e7 ' + y + '%)';
       range.style.background = color;
+
+      rangeWebkit.addClass('active');
     }
     else if(range.value < 20000){
       // toggle1.click();
       let color = 'linear-gradient(90deg, #97c11f '+ y +'%, #dce2e7 ' + y + '%)';
       range.style.background = color;
       $('#myRange').attr('step', "500");
+
+      rangeWebkit.removeClass('active');
     }
     else{
       let color = 'linear-gradient(90deg, #f39100 '+ y +'%, #dce2e7 ' + y + '%)';
@@ -225,38 +234,26 @@ toggle2.click(function(){
   range.addEventListener("touchmove", function(){
     getRange();
   })
-  
   function getrangeDateQuantity(){
     let x = rangeDate.value-10;
     let y = x*step/maxValueDate;
-    // let color = 'linear-gradient(90deg, #97c11f '+ y +'%, #dce2e7 ' + y + '%)';
-    // rangeDate.style.background = color;
-    let weeks = 6;
-    if(rangeDate.value > 40){
 
-        $('#rangeDate').attr('step', "2");
-        $('#rangeDate').attr('min', "6");
-        $('#rangeDate').attr('max', "24");
-        $('#rangeDate').attr('value', "6");
-        document.getElementById('day').innerHTML = 'недель';
+    console.log(y);
+    if(rangeDate.value < 41){
+
+    let color = 'linear-gradient(90deg, #97c11f '+ y +'%, #dce2e7 ' + y + '%)';
+    rangeDate.style.background = color;
+    rangeWebkit.removeClass('active');
+
+    }
+    
+    else if(rangeDate.value > 41){
+        // document.getElementById('day').innerHTML = 'недель';
 
         let color = 'linear-gradient(90deg, #f39100 '+ y +'%, #dce2e7 ' + y + '%)';
         rangeDate.style.background = color;
-        console.log(rangeDate.value);
-        valueDate.innerHTML = weeks;
-      
-    }
-    else if(rangeDate.value < 40){
-      $('#rangeDate').attr('step', "1");
-        $('#rangeDate').attr('min', "10");
-        $('#rangeDate').attr('max', "70");
-        $('#rangeDate').attr('value', "15");
-        document.getElementById('day').innerHTML = 'дней';
 
-      let color = 'linear-gradient(90deg, #97c11f '+ y +'%, #dce2e7 ' + y + '%)';
-      rangeDate.style.background = color;
-      $('#rangeDate').attr('step', "1");
-      console.log(rangeDate.value);
+        rangeWebkit.addClass('active');
     }
     else{
       let color = 'linear-gradient(90deg, #f39100 '+ y +'%, #dce2e7 ' + y + '%)';
@@ -369,7 +366,7 @@ app.appendChild(title);
 
 function windowSize(){
   if ($(window).width() <= '640'){
-    pc.innerHTML ='<div class="zaym-head">Моментальное погашение</div> <div class="wrapper-block"> <div class="wrapper-sum"> <h3 class="sum__title">Сумма займа</h3> <div class="wrapper-input-number"> <span id="value" class="input-number"></span> <span class="input-number">&#8381;</span> </div> </div> <input type="range"  min="3000" max="15000" value="11500" step="500" class="range" id="myRange"> <div class="prices"> <div class="price">3000 &#8381;</div> <div class="price">15000 &#8381;</div> </div> </div><div class="wrapper-block"> <div class="wrapper-sum"> <h3 class="sum__title">Срок займа</h3><div class="wrapper-input-number"> <span id="valueDate" class="input-number"></span> <span class="input-number">дней</span> </div> </div> <input type="range"  min="7" max="31" value="31" step="1" class="range" id="rangeDate"> <div class="prices"> <div class="price">7 дней</div> <div class="price">31 день</div> </div> </div> <div class="free-zaym"> <div class="free-zaym__left"><div class="first-zaym">Первый займ сроком до 10 дней — <span>БЕСПЛАТНО</span> </div> </div> <div class="free-zaym__right"> <img src="img/shape.svg" alt=""> <div class="shape"> <div class="shape-text">первый займ</div> <div class="shape-percent">0%</div> </div> </div> </div> <a href="#" class="take-many">Получить деньги</a>';
+    pc.innerHTML ='<div class="zaym-lime"> <button class="main-btn btn-green active">До 20 000</button> <button class="main-btn btn-orange">До 70 000</button> </div> <div class="wrapper-block"> <div class="wrapper-sum"> <h3 class="sum__title">Сумма займа</h3> <div class="wrapper-input-number"> <span id="value" class="input-number"></span> <span class="input-number">&#8381;</span> </div> </div> <input type="range"  min="0" max="70000" value="10000" step="500" class="range" id="myRange"><div class="prices"> <div class="price">2000 &#8381;</div> <div class="price">70000 &#8381;</div> </div> </div> <div class="wrapper-block"> <div class="wrapper-sum"> <h3 class="sum__title">Срок займа</h3> <div class="wrapper-input-number"> <span id="valueDate" class="input-number"></span> <span class="input-number" id="day">дней</span> </div> </div> <input type="range"  min="10" max="168" value="15" step="1" class="range" id="rangeDate"> <div class="prices"> <div class="price">10 дней</div> <div class="price">24 недели</div> </div> </div> <a href="#" class="benefits-btn calc-btn">Получить <span id="get-value"></span></a>';
   } else {
     pc.innerHTML = '';
   }
