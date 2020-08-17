@@ -143,15 +143,80 @@ $(document).ready(function () {
     valueDate.innerHTML = this.value;
   }
 
-  let maxValueDate = 21;
+  //calc toggle
+  let maxValueDate = 60;
   let step = 100;
   let maxValue = 70000;
 
+let toggle1 = $(".btn-green");
+let toggle2 = $(".btn-orange");
+
+let calcBtn = $(".calc-btn");
+let rangeWebkit = $(".range");
+let x = range.value;
+    
+let y = x*step/maxValue;
+
+toggle1.click(function(){
+  range.value = 10000;
+  output.innerHTML = 10000;
+  rangeDate.value = 15;
+  valueDate.innerHTML = 15;
+  document.getElementById('day').innerHTML = 'дней';
+  getRange();
+  getrangeDateQuantity();
+  toggle1.addClass('active');
+  toggle2.removeClass('active');
+  rangeWebkit.removeClass('active');
+
+  calcBtn.css("background", "linear-gradient(180deg,#97c11f,#749717)");
+
+  
+});
+
+toggle2.click(function(){
+  range.value = 25000;
+  output.innerHTML = 25000;
+  rangeDate.value = 42;
+  valueDate.innerHTML = rangeDate.value/7;
+  document.getElementById('day').innerHTML = 'недель';
+  getRange();
+  getrangeDateQuantity();
+  toggle2.addClass('active');
+  toggle1.removeClass('active');
+  rangeWebkit.addClass('active');
+
+  calcBtn.css("background", "linear-gradient(180deg,#f39100,#eb5d0b)");
+  rangeWebkit.css("background", "#f3910");
+
+
+  
+});
+
+  
+
   function getRange(){
     let x = range.value;
+    
     let y = x*step/maxValue;
-    let color = 'linear-gradient(90deg, #97c11f '+ y +'%, #dce2e7 ' + y + '%)';
-    range.style.background = color;
+
+    if(x > 20000 && x <=25000){
+      // toggle2.click();
+      $('#myRange').attr('step', "5000");
+      let color = 'linear-gradient(90deg, #f39100 '+ y +'%, #dce2e7 ' + y + '%)';
+      range.style.background = color;
+    }
+    else if(range.value < 20000){
+      // toggle1.click();
+      let color = 'linear-gradient(90deg, #97c11f '+ y +'%, #dce2e7 ' + y + '%)';
+      range.style.background = color;
+      $('#myRange').attr('step', "500");
+    }
+    else{
+      let color = 'linear-gradient(90deg, #f39100 '+ y +'%, #dce2e7 ' + y + '%)';
+      range.style.background = color;
+      
+    }
   }
   getRange();
   range.addEventListener("mousemove", function(){
@@ -164,8 +229,40 @@ $(document).ready(function () {
   function getrangeDateQuantity(){
     let x = rangeDate.value-10;
     let y = x*step/maxValueDate;
-    let color = 'linear-gradient(90deg, #97c11f '+ y +'%, #dce2e7 ' + y + '%)';
-    rangeDate.style.background = color;
+    // let color = 'linear-gradient(90deg, #97c11f '+ y +'%, #dce2e7 ' + y + '%)';
+    // rangeDate.style.background = color;
+    let weeks = 6;
+    if(rangeDate.value > 40){
+
+        $('#rangeDate').attr('step', "2");
+        $('#rangeDate').attr('min', "6");
+        $('#rangeDate').attr('max', "24");
+        $('#rangeDate').attr('value', "6");
+        document.getElementById('day').innerHTML = 'недель';
+
+        let color = 'linear-gradient(90deg, #f39100 '+ y +'%, #dce2e7 ' + y + '%)';
+        rangeDate.style.background = color;
+        console.log(rangeDate.value);
+        valueDate.innerHTML = weeks;
+      
+    }
+    else if(rangeDate.value < 40){
+      $('#rangeDate').attr('step', "1");
+        $('#rangeDate').attr('min', "10");
+        $('#rangeDate').attr('max', "70");
+        $('#rangeDate').attr('value', "15");
+        document.getElementById('day').innerHTML = 'дней';
+
+      let color = 'linear-gradient(90deg, #97c11f '+ y +'%, #dce2e7 ' + y + '%)';
+      rangeDate.style.background = color;
+      $('#rangeDate').attr('step', "1");
+      console.log(rangeDate.value);
+    }
+    else{
+      let color = 'linear-gradient(90deg, #f39100 '+ y +'%, #dce2e7 ' + y + '%)';
+      rangeDate.style.background = color;
+      
+    }
   }
   getrangeDateQuantity();
   rangeDate.addEventListener("mousemove", function(){
@@ -212,6 +309,9 @@ $(document).ready(function () {
         getRange();
     }
 });
+
+
+
   // scroll anchor
   let heightHeader = $(".header").height()+40;
   $('.header__list li a').click(function(){
@@ -290,32 +390,3 @@ $('.slider').slick({
 //end slider
 
 
-//calc toggle
-
-
-let toggle1 = $(".btn-green");
-let toggle2 = $(".btn-orange");
-
-let calcBtn = $(".calc-btn");
-let rangeWebkit = $(".range");
-
-toggle1.click(function(){
-  toggle1.addClass('active');
-  toggle2.removeClass('active');
-  rangeWebkit.removeClass('active');
-
-  calcBtn.css("background", "linear-gradient(180deg,#97c11f,#749717)");
-
-  
-});
-toggle2.click(function(){
-  toggle2.addClass('active');
-  toggle1.removeClass('active');
-  rangeWebkit.addClass('active');
-
-  calcBtn.css("background", "linear-gradient(180deg,#f39100,#eb5d0b)");
-  rangeWebkit.css("background", "#f3910");
-
-
-  
-});
