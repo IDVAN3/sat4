@@ -1135,7 +1135,7 @@ a.first-btn {
   width: 100%;
   position: absolute;
   top: -51px;
-  left: -1px;
+  left: 0px;
 }
 
 .main-btn {
@@ -1193,6 +1193,8 @@ a.first-btn {
   cursor: pointer;
 }
 
+/* calc */
+/* calc */
 .footer {
   flex: 0 0 auto;
   color: #8f8f8f;
@@ -1550,16 +1552,16 @@ body.lock {
 @media (max-width: 930px) {
   .main__right {
     top: 120px;
-    height: 65vh;
+    height: 80vh;
     overflow-y: auto;
+  }
+
+  .zaym-lime {
+    top: 0;
   }
 
   .web-zaym {
     padding-top: 75px;
-  }
-
-  .zaym-head {
-    top: 30px;
   }
 
   .online-zaym {
@@ -1655,6 +1657,10 @@ body.lock {
   }
 }
 @media (max-width: 640px) {
+  .footer__item {
+    padding-bottom: 0;
+  }
+
   .wrapper-sum {
     flex-direction: row;
   }
@@ -1763,7 +1769,7 @@ body.lock {
   }
 
   .slider .slick-arrow {
-    top: 120px;
+    top: 35px;
   }
 
   .srolles-top {

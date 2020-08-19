@@ -147,9 +147,9 @@ $(document).ready(function () {
   }
 
   //calc toggle
-  let maxValueDate = 158;
+  
   let step = 100;
-  let maxValue = 70000;
+  let maxValue = 50000;
 
 let toggle1 = $(".btn-green");
 let toggle2 = $(".btn-orange");
@@ -160,13 +160,21 @@ let x = range.value;
     
 let y = x*step/maxValue;
 
+
 toggle1.click(function(){
+  let dayWeek = document.getElementById('day');
+  let dayWeektext = dayWeek.innerText;
   range.value = 10000;
   output.innerHTML = 10000;
   output1.innerHTML = 10000;
+
+  $('#rangeDate').attr('step', "1");
+      $('#rangeDate').attr('min', "10");
+      $('#rangeDate').attr('max', "70");
+
   rangeDate.value = 15;
   valueDate.innerHTML = 15;
-  document.getElementById('day').innerHTML = 'дней';
+  dayWeek.innerHTML = 'дней';
   getRange();
   getrangeDateQuantity();
   toggle1.addClass('active');
@@ -182,9 +190,20 @@ toggle2.click(function(){
   range.value = 25000;
   output.innerHTML = 25000;
   output1.innerHTML = 25000;
-  rangeDate.value = 41;
-  valueDate.innerHTML = rangeDate.value;
-  // document.getElementById('day').innerHTML = 'недель';
+
+  let dayWeek = document.getElementById('day');
+  let dayWeektext = dayWeek.innerText;
+  console.log(dayWeektext);
+  if(dayWeektext == 'дней'){
+    rangeDate.value = 41;
+    dayWeek.innerHTML = 'недель';
+    valueDate.innerHTML = 6;
+  }
+  if(dayWeektext == 'недель'){
+    rangeDate.value = 6;
+    valueDate.innerHTML = 6;
+  }
+  
   getRange();
   getrangeDateQuantity();
   toggle2.addClass('active');
@@ -204,28 +223,33 @@ toggle2.click(function(){
     let x = range.value;
     
     let y = x*step/maxValue;
+    if(y < 50)
+    // if(x > 20000 && x <=25000)
+    {
+      let color = 'linear-gradient(90deg, #97c11f '+ y +'%, #dce2e7 ' + y + '%)';
+      range.style.background = color;
+      $('#myRange').attr('step', "500");
+      $('#myRange').attr('min', "2000");
+      $('#myRange').attr('max', "50000");
 
-    if(x > 20000 && x <=25000){
-      // toggle2.click();
+      rangeWebkit.removeClass('active');
+    }
+    // else if(range.value < 20000)
+    else if(y >= 50)
+    {  
+      let maxValue = 70000;
+      let x = range.value;
+      let y = x*step/maxValue;
+
       $('#myRange').attr('step', "5000");
+      $('#myRange').attr('min', "-20000");
+      $('#myRange').attr('max', "70000");
       let color = 'linear-gradient(90deg, #f39100 '+ y +'%, #dce2e7 ' + y + '%)';
       range.style.background = color;
 
       rangeWebkit.addClass('active');
     }
-    else if(range.value < 20000){
-      // toggle1.click();
-      let color = 'linear-gradient(90deg, #97c11f '+ y +'%, #dce2e7 ' + y + '%)';
-      range.style.background = color;
-      $('#myRange').attr('step', "500");
 
-      rangeWebkit.removeClass('active');
-    }
-    else{
-      let color = 'linear-gradient(90deg, #f39100 '+ y +'%, #dce2e7 ' + y + '%)';
-      range.style.background = color;
-      
-    }
   }
   getRange();
   range.addEventListener("mousemove", function(){
@@ -234,33 +258,74 @@ toggle2.click(function(){
   range.addEventListener("touchmove", function(){
     getRange();
   })
+  let maxValueDate = 60;
+  
   function getrangeDateQuantity(){
+    
     let x = rangeDate.value-10;
     let y = x*step/maxValueDate;
-
-    console.log(y);
-    if(rangeDate.value < 41){
-
+    let dayWeek = document.getElementById('day');
+    let dayWeektext = dayWeek.innerText;
+    
+    // if(y <= 50)
+    if(rangeDate.value < 41)
+    {
+      
     let color = 'linear-gradient(90deg, #97c11f '+ y +'%, #dce2e7 ' + y + '%)';
     rangeDate.style.background = color;
     rangeWebkit.removeClass('active');
-
-    }
     
-    else if(rangeDate.value > 41){
-        // document.getElementById('day').innerHTML = 'недель';
+    if(dayWeektext == "недель"){
+      
+      let maxValueDate = 24;
+      let x = rangeDate.value;
+      let y = x*step/maxValueDate;
+      
+      let color = 'linear-gradient(90deg, #f39100 '+ y +'%, #dce2e7 ' + y + '%)';
+      
+      rangeDate.style.background = color;
 
+      rangeWebkit.addClass('active');
+    }
+    if(rangeDate.value < 6 && dayWeektext == "недель"){
+      
+      $('#rangeDate').attr('step', "1");
+      $('#rangeDate').attr('min', "10");
+      $('#rangeDate').attr('max', "70");
+
+      rangeDate.value = 40;
+      dayWeek.innerHTML = 'дней';
+      valueDate.innerHTML = 40;
+
+      let color = 'linear-gradient(90deg, #97c11f '+ y +'%, #dce2e7 ' + y + '%)';
+      rangeDate.style.background = color;
+    }
+    else if(rangeDate.value == 6){
+      rangeDate.value = 6;
+      valueDate.innerHTML = 6;
+    } 
+    }
+    else if(y > 50)
+    // else if(rangeDate.value > 40)
+    {
+      dayWeek.innerHTML = 'недель';
+        $('#rangeDate').attr('step', "2");
+        $('#rangeDate').attr('min', "-18");
+        $('#rangeDate').attr('max', "24");
+        let maxValueDate = 24;
+        rangeDate.value = 6;
+        let x = rangeDate.value;
+        let y = x*step/maxValueDate;
+        
         let color = 'linear-gradient(90deg, #f39100 '+ y +'%, #dce2e7 ' + y + '%)';
         rangeDate.style.background = color;
 
         rangeWebkit.addClass('active');
+   
     }
-    else{
-      let color = 'linear-gradient(90deg, #f39100 '+ y +'%, #dce2e7 ' + y + '%)';
-      rangeDate.style.background = color;
-      
-    }
+    
   }
+
   getrangeDateQuantity();
   rangeDate.addEventListener("mousemove", function(){
     getrangeDateQuantity();
@@ -328,6 +393,22 @@ toggle2.click(function(){
     }
   };
   windowWidth();
+
+
+  $(".footer__title").click(function (e, e1) {
+    e = $(this).closest('.footer__item').find('.footer-ul');
+    if (!e.is(':visible')) {
+      $('.footer-ul').slideUp();
+      e.slideDown();
+  
+      // $('.toggle-plus-minus').removeClass('active');
+      // $(this).closest('.menu-li').find('.toggle-plus-minus').addClass('active');
+    }
+    else {
+      e.slideToggle();
+      // $('.toggle-plus-minus').removeClass('active');
+    }
+  });
 });
 
 
@@ -382,6 +463,14 @@ windowSize();
 $('.slider').slick({
   slidesToShow: 2,
   slidesToScroll: 1,
+  responsive:[
+    {
+        breakpoint: 900,
+        settings:{
+            slidesToShow: 1,
+        }
+    }
+]
 });
 
 //end slider
