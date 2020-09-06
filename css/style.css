@@ -252,6 +252,7 @@ li.counter li:before {
 }
 
 .wrapper-logo {
+  margin-top: 15px;
   max-width: 207px;
   display: flex;
   align-items: center;
@@ -814,7 +815,7 @@ input[type=number] {
   color: #97c11f;
   font-size: 28px;
   line-height: 30px;
-  padding: 20px 0;
+  padding: 20px 20px;
 }
 
 .section-main ul li {
@@ -1044,7 +1045,7 @@ p {
 }
 
 .wrap-first-btn {
-  justify-content: start;
+  justify-content: center;
   padding: 15px 0;
 }
 
@@ -1072,7 +1073,7 @@ a.first-btn {
 }
 .zaim-lime__item {
   max-width: 230px;
-  margin: 0 20px 20px 20px;
+  margin: 0px 25px 20px 15px;
 }
 .zaim-lime img {
   max-width: 250px;
@@ -1114,15 +1115,21 @@ a.first-btn {
 
 .get-many {
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
 }
 .get-many__item {
-  max-width: 350px;
+  max-width: 294px;
   margin: 0 20px 20px 20px;
 }
 
 .get-title {
   text-align: center;
+}
+
+.wrapper-get-item {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .wrapper-map {
@@ -1202,7 +1209,7 @@ a.first-btn {
   padding: 30px 0 10px 0;
 }
 .footer li {
-  padding-bottom: 12px;
+  padding-bottom: 10px;
 }
 .footer a {
   color: #999;
@@ -1216,11 +1223,11 @@ a.first-btn {
   font-size: 19px;
   color: #000;
   font-weight: 500;
-  padding-bottom: 20px;
+  padding: 5px 0 15px;
 }
 
 .footer-pad {
-  padding: 0 50px;
+  padding: 0 25px;
 }
 
 .wrapper-mir {
@@ -1509,7 +1516,9 @@ body.lock {
   }
 }
 @media (max-width: 1024px) {
-  /**/
+  .wrapper-get-item {
+    width: 100%;
+  }
 }
 @media (max-width: 992px) {
   .wrapper-not-items {
@@ -1580,6 +1589,15 @@ body.lock {
     font-size: 20px;
   }
 }
+@media (max-width: 860px) {
+  .input-number {
+    font-size: 28px;
+  }
+
+  .web-zaym {
+    padding: 75px 10px 10px 10px;
+  }
+}
 @media (max-width: 768px) {
   .srolles-top {
     right: 10px;
@@ -1641,7 +1659,7 @@ body.lock {
   }
 
   .footer-ul li {
-    margin: 5px 10px;
+    margin: 5px 0px;
   }
 
   .web-zaym {
@@ -1657,6 +1675,18 @@ body.lock {
   }
 }
 @media (max-width: 640px) {
+  .section-main {
+    padding-bottom: 0px;
+  }
+
+  .web-zaym {
+    padding: 27px 30px 10px 30px;
+  }
+
+  .input-number {
+    font-size: 35px;
+  }
+
   .footer__item {
     padding-bottom: 0;
   }
@@ -1886,6 +1916,10 @@ body.lock {
   }
 }
 @media (max-width: 500px) {
+  .footer__item {
+    padding: 0;
+  }
+
   .wrapper-btn-toggle {
     flex-direction: column;
     top: -55px;

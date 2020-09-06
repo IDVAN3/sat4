@@ -192,6 +192,7 @@ h6 {
     padding: 10px 0;
 }
 .wrapper-logo{
+    margin-top: 15px;
     max-width: 207px;
     display: flex;
     align-items: center;
@@ -721,7 +722,7 @@ input[type=number]{
     color: #97c11f;
     font-size: 28px;
     line-height: 30px;
-    padding: 20px 0;
+    padding: 20px 20px;
 }
 .section-main ul li{
     font-size: 16px;
@@ -926,7 +927,7 @@ p{
     justify-content: center;
 }
 .wrap-first-btn{
-    justify-content: start;
+    justify-content: center;
     padding: 15px 0;
 }
 a.benefits-btn{
@@ -949,7 +950,7 @@ a.first-btn{
     flex-wrap: wrap;
     &__item{
         max-width: 230px;
-        margin: 0 20px 20px 20px;
+        margin: 0px 25px 20px 15px;
     }
     img{
         max-width: 250px;
@@ -985,15 +986,21 @@ a.first-btn{
 }
 .get-many{
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     &__item{
-        max-width: 350px;
+        max-width: 294px;
         margin: 0 20px 20px 20px;
     }
 }
 .get-title{
     text-align: center;
 
+}
+.wrapper-get-item{
+    
+    display: flex;
+    justify-content: flex-end;
 }
 .wrapper-map{
     margin: 0 auto;
@@ -1093,7 +1100,7 @@ a.first-btn{
     background: #fff;
     padding: 30px 0 10px 0;
     li{
-        padding-bottom: 12px;
+        padding-bottom: 10px;
     }
     a{
         color: #999;
@@ -1107,11 +1114,11 @@ a.first-btn{
         font-size: 19px;
         color: #000;
         font-weight: 500;
-        padding-bottom: 20px;
+        padding: 5px 0 15px;
     }
 }
 .footer-pad{
-    padding: 0 50px;
+    padding: 0 25px;
 }
 .wrapper-mir{
     padding: 20px 0 15px 0;

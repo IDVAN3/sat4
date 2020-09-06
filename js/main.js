@@ -193,15 +193,17 @@ toggle2.click(function(){
 
   let dayWeek = document.getElementById('day');
   let dayWeektext = dayWeek.innerText;
-  console.log(dayWeektext);
+  
   if(dayWeektext == 'дней'){
     rangeDate.value = 41;
     dayWeek.innerHTML = 'недель';
     valueDate.innerHTML = 6;
+    getrangeDateQuantity();
   }
   if(dayWeektext == 'недель'){
     rangeDate.value = 6;
     valueDate.innerHTML = 6;
+    getrangeDateQuantity();
   }
   
   getRange();
@@ -224,8 +226,21 @@ toggle2.click(function(){
     
     let y = x*step/maxValue;
     if(y < 50)
-    // if(x > 20000 && x <=25000)
+    
     {
+      let dayWeek = document.getElementById('day');
+      let dayWeektext = dayWeek.innerText;
+      if(dayWeektext == "недель"){
+        $('#rangeDate').attr('step', "1");
+        $('#rangeDate').attr('min', "10");
+        $('#rangeDate').attr('max', "70");
+  
+        
+        rangeDate.value = 40;
+        valueDate.innerHTML = 40;
+        dayWeek.innerHTML = 'дней';
+        getrangeDateQuantity();
+      }
       let color = 'linear-gradient(90deg, #97c11f '+ y +'%, #dce2e7 ' + y + '%)';
       range.style.background = color;
       $('#myRange').attr('step', "500");
@@ -233,21 +248,49 @@ toggle2.click(function(){
       $('#myRange').attr('max', "50000");
 
       rangeWebkit.removeClass('active');
+      calcBtn.css("background", "linear-gradient(180deg,#97c11f,#749717)");
+      toggle1.addClass('active');
+      toggle2.removeClass('active');
     }
-    // else if(range.value < 20000)
-    else if(y >= 50)
+    
+    else if(y == 50){
+      let color = 'linear-gradient(90deg, #f39100 '+ 50 +'%, #dce2e7 ' + 50 + '%)';
+      range.style.background = color;
+    }
+    else if(y > 50)
     {  
+      let dayWeek = document.getElementById('day');
+      let dayWeektext = dayWeek.innerText;
+      if(dayWeektext == "дней"){
+        $('#rangeDate').attr('step', "2");
+        $('#rangeDate').attr('min', "-18");
+        $('#rangeDate').attr('max', "24");
+  
+        
+        rangeDate.value = 6;
+        valueDate.innerHTML = 6;
+        dayWeek.innerHTML = 'недель';
+        getrangeDateQuantity();
+      }
       let maxValue = 70000;
       let x = range.value;
       let y = x*step/maxValue;
 
       $('#myRange').attr('step', "5000");
-      $('#myRange').attr('min', "-20000");
+      $('#myRange').attr('min', "-15000");
       $('#myRange').attr('max', "70000");
-      let color = 'linear-gradient(90deg, #f39100 '+ y +'%, #dce2e7 ' + y + '%)';
-      range.style.background = color;
-
+      
+      for(let i = 50; i < 100; i++){
+        if(parseInt(y, 10) == i){
+          
+          let color = 'linear-gradient(90deg, #f39100 '+ (i+2) +'%, #dce2e7 ' + (i+2) + '%)';
+          range.style.background = color;
+        }
+      }
       rangeWebkit.addClass('active');
+      calcBtn.css("background", "linear-gradient(180deg,#f39100,#eb5d0b)");
+      toggle2.addClass('active');
+      toggle1.removeClass('active');
     }
 
   }
@@ -270,40 +313,89 @@ toggle2.click(function(){
     // if(y <= 50)
     if(rangeDate.value < 41)
     {
-      
-    let color = 'linear-gradient(90deg, #97c11f '+ y +'%, #dce2e7 ' + y + '%)';
-    rangeDate.style.background = color;
-    rangeWebkit.removeClass('active');
-    
-    if(dayWeektext == "недель"){
-      
-      let maxValueDate = 24;
-      let x = rangeDate.value;
-      let y = x*step/maxValueDate;
-      
-      let color = 'linear-gradient(90deg, #f39100 '+ y +'%, #dce2e7 ' + y + '%)';
-      
-      rangeDate.style.background = color;
-
-      rangeWebkit.addClass('active');
-    }
-    if(rangeDate.value < 6 && dayWeektext == "недель"){
-      
-      $('#rangeDate').attr('step', "1");
-      $('#rangeDate').attr('min', "10");
-      $('#rangeDate').attr('max', "70");
-
-      rangeDate.value = 40;
-      dayWeek.innerHTML = 'дней';
-      valueDate.innerHTML = 40;
-
+      toggle1.addClass('active');
+      toggle2.removeClass('active');
       let color = 'linear-gradient(90deg, #97c11f '+ y +'%, #dce2e7 ' + y + '%)';
       rangeDate.style.background = color;
-    }
-    else if(rangeDate.value == 6){
-      rangeDate.value = 6;
-      valueDate.innerHTML = 6;
-    } 
+      rangeWebkit.removeClass('active');
+      calcBtn.css("background", "linear-gradient(180deg,#97c11f,#749717)");
+      
+      if(dayWeektext == "недель"){
+        if(range.value < 25000){
+          
+          range.value = 25000;
+          output.innerHTML = 25000;
+          output1.innerHTML = 25000;
+          let x = range.value;
+          let y = x*step/maxValue;
+          let color = 'linear-gradient(90deg, #f39100 '+ (y) +'%, #dce2e7 ' + (y) + '%)';
+          range.style.background = color;
+        }
+        let maxValueDate = 24;
+        let x = rangeDate.value;
+        let y = x*step/maxValueDate;
+        
+        for(let i = 40; i <= 100; i++){
+          if(parseInt(y, 10) == i){
+            if(rangeDate.value >= 8 && rangeDate.value < 14){
+              let color = 'linear-gradient(90deg, #f39100 '+ (i+20) +'%, #dce2e7 ' + (i+20) + '%)';
+              rangeDate.style.background = color;
+            }
+          
+            else if(rangeDate.value >= 14 && rangeDate.value < 20){
+              let color = 'linear-gradient(90deg, #f39100 '+ (i+10) +'%, #dce2e7 ' + (i+10) + '%)';
+              rangeDate.style.background = color;
+            }
+            else if(rangeDate.value >= 20){
+              let color = 'linear-gradient(90deg, #f39100 '+ (i+5) +'%, #dce2e7 ' + (i+5) + '%)';
+              rangeDate.style.background = color;
+            }
+          }
+        }
+
+
+        rangeWebkit.addClass('active');
+        calcBtn.css("background", "linear-gradient(180deg,#f39100,#eb5d0b)");
+        toggle1.removeClass('active');
+        toggle2.addClass('active');
+      }
+      else if(dayWeektext == "дней"){
+        if(range.value >= 25000){
+          range.value = 20000;
+          output.innerHTML = 20000;
+          output1.innerHTML = 20000;
+          let x = range.value;
+          let y = x*step/maxValue;
+          let color = 'linear-gradient(90deg, #97c11f '+ (y) +'%, #dce2e7 ' + (y) + '%)';
+          range.style.background = color;
+        }
+      }
+      if(rangeDate.value < 6 && dayWeektext == "недель"){
+        
+        $('#rangeDate').attr('step', "1");
+        $('#rangeDate').attr('min', "10");
+        $('#rangeDate').attr('max', "70");
+
+        rangeDate.value = 40;
+        dayWeek.innerHTML = 'дней';
+        valueDate.innerHTML = 40;
+        
+        let color = 'linear-gradient(90deg, #97c11f '+ y +'%, #dce2e7 ' + y + '%)';
+        rangeDate.style.background = color;
+        
+      }
+      else if(rangeDate.value == 6){
+        rangeDate.value = 6;
+        valueDate.innerHTML = 6;
+        let color = 'linear-gradient(90deg, #f39100 '+ 53 +'%, #dce2e7 ' + 53 + '%)';
+        rangeDate.style.background = color;
+      } 
+      else if(rangeDate.value == 8){
+        let color = 'linear-gradient(90deg, #f39100 '+ 62 +'%, #dce2e7 ' + 62 + '%)';
+        rangeDate.style.background = color;
+      } 
+
+      
     }
     else if(y > 50)
     // else if(rangeDate.value > 40)
@@ -321,8 +413,12 @@ toggle2.click(function(){
         rangeDate.style.background = color;
 
         rangeWebkit.addClass('active');
-   
+        calcBtn.css("background", "linear-gradient(180deg,#f39100,#eb5d0b)");
+        toggle1.removeClass('active');
+        toggle2.addClass('active');
     }
+
+    
     
   }
 
@@ -395,20 +491,20 @@ toggle2.click(function(){
   windowWidth();
 
 
-  $(".footer__title").click(function (e, e1) {
-    e = $(this).closest('.footer__item').find('.footer-ul');
-    if (!e.is(':visible')) {
-      $('.footer-ul').slideUp();
-      e.slideDown();
+  // $(".footer__title").click(function (e, e1) {
+  //   e = $(this).closest('.footer__item').find('.footer-ul');
+  //   if (!e.is(':visible')) {
+  //     $('.footer-ul').slideUp();
+  //     e.slideDown();
   
-      // $('.toggle-plus-minus').removeClass('active');
-      // $(this).closest('.menu-li').find('.toggle-plus-minus').addClass('active');
-    }
-    else {
-      e.slideToggle();
-      // $('.toggle-plus-minus').removeClass('active');
-    }
-  });
+  //     // $('.toggle-plus-minus').removeClass('active');
+  //     // $(this).closest('.menu-li').find('.toggle-plus-minus').addClass('active');
+  //   }
+  //   else {
+  //     e.slideToggle();
+  //     // $('.toggle-plus-minus').removeClass('active');
+  //   }
+  // });
 });
 
 

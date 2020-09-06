@@ -1,5 +1,6 @@
 // <МЕДИАЗАПРОСЫ>-----------------------------------------------
 @media (max-width: 1200px) {
+    
     .wrapper-sum{
         flex-direction: column;
     }
@@ -30,7 +31,9 @@
 }
 
 @media (max-width: 1024px) {
-    /**/
+    .wrapper-get-item{
+        width: 100%;
+    }
 }
 
 @media (max-width: 992px) {
@@ -92,6 +95,14 @@
         font-size: 20px;
     }
 }
+@media (max-width: 860px) {
+    .input-number {
+        font-size: 28px;
+    }
+    .web-zaym{
+        padding: 75px 10px 10px 10px;
+    }
+}
 @media (max-width: 768px) {
 
     .srolles-top {
@@ -142,7 +153,7 @@
         margin-right: 0px;
     }
     .footer-ul li{
-        margin: 5px 10px;
+        margin: 5px 0px;
     }
     .web-zaym{
         padding: 27px 5px 10px 5px;
@@ -156,6 +167,16 @@
 }
 
 @media (max-width: 640px) {
+    
+    .section-main{
+        padding-bottom: 0px;
+    }
+    .web-zaym{
+        padding: 27px 30px 10px 30px;
+    }
+    .input-number {
+        font-size: 35px;
+    }
     .footer__item{
         padding-bottom: 0;
     }
@@ -349,6 +370,9 @@
     }
 }
 @media (max-width: 500px) {
+    .footer__item{
+        padding: 0;
+    }
     .wrapper-btn-toggle{
         flex-direction: column;
         top: -55px;
